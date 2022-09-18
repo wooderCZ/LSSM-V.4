@@ -23,6 +23,7 @@ import config from './config';
 import i18n from './i18n';
 import loadingIndicatorStorageKey from '../build/plugins/LoadingProgressPluginStorageKey';
 import LSSMV4 from './LSSMV4.vue';
+import { defineSettings } from './settings/settings';
 import utils from './utils';
 
 import type { Color, Hidden, Toggle } from 'typings/Setting';
@@ -135,64 +136,53 @@ LSSM-Team`,
         translations: useTranslationStore(),
     };
 
-    LSSM.$stores.settings
-        .registerModule({
-            moduleId: 'global',
-            settings: {
-                labelInMenu: <Toggle>{
-                    type: 'toggle',
-                    default: false,
-                },
-                allowTelemetry: <Toggle>{
-                    type: 'toggle',
-                    default: true,
-                },
-                iconBg: <Color>{
-                    type: 'color',
-                    default: LSSM.$stores.root.isPoliceChief
-                        ? '#004997'
-                        : '#C9302C',
-                },
-                iconBgAsNavBg: <Toggle>{
-                    type: 'toggle',
-                    default: false,
-                },
-                osmDarkTooltip: <Toggle>{
-                    type: 'toggle',
-                    default: LSSM.$stores.root.isDarkMode,
-                    noMapkit: true,
-                    disabled: () => !LSSM.$stores.root.isDarkMode,
-                },
-                osmDarkControls: <Toggle>{
-                    type: 'toggle',
-                    default: LSSM.$stores.root.isDarkMode,
-                    noMapkit: true,
-                    disabled: () => !LSSM.$stores.root.isDarkMode,
-                },
-                v3MenuAsSubmenu: <Toggle>{
-                    type: 'toggle',
-                    default: false,
-                },
-                anniversary1Clicked: <Hidden>{
-                    type: 'hidden',
-                },
-                loadingIndicator: <Toggle>{
-                    type: 'toggle',
-                    default: true,
-                },
-                debugMode: <Toggle>{
-                    type: 'toggle',
-                    default: false,
-                },
-            },
-        })
-        .then(() =>
-            LSSM.$stores.settings.getSetting({
-                moduleId: 'global',
-                settingId: 'debugMode',
-                defaultValue: false,
-            })
-        )
+    defineSettings('global', {
+        labelInMenu: {
+            type: 'toggle',
+            default: false,
+        },
+        allowTelemetry: {
+            type: 'toggle',
+            default: true,
+        },
+        iconBg: {
+            type: 'color',
+            default: LSSM.$stores.root.isPoliceChief ? '#004997' : '#C9302C',
+        },
+        iconBgAsNavBg: {
+            type: 'toggle',
+            default: false,
+        },
+        osmDarkTooltip: {
+            type: 'toggle',
+            default: LSSM.$stores.root.isDarkMode,
+            noMapkit: true,
+            // disabled: () => !LSSM.$stores.root.isDarkMode,
+        },
+        osmDarkControls: {
+            type: 'toggle',
+            default: LSSM.$stores.root.isDarkMode,
+            noMapkit: true,
+            // disabled: () => !LSSM.$stores.root.isDarkMode,
+        },
+        v3MenuAsSubmenu: {
+            type: 'toggle',
+            default: false,
+        },
+        anniversary1Clicked: {
+            type: 'hidden',
+            default: false,
+        },
+        loadingIndicator: {
+            type: 'toggle',
+            default: true,
+        },
+        debugMode: {
+            type: 'toggle',
+            default: false as boolean,
+        },
+    })
+        .then($settings => $settings('debugMode'))
         .then(debugMode => {
             if (!debugMode) return;
             let actionCounter = 0;
