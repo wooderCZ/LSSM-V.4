@@ -164,10 +164,12 @@ export default (
                         staffGroups[staffGroupRequirement]
                             .conditionalVehicles ?? {}
                     ).forEach(([condition, vehicles]) => {
+                        const additional =
+                            LSSM.$stores.api.missions[missionType]?.additional;
                         if (
-                            LSSM.$stores.api.missions[missionType]?.additional[
-                                condition
-                            ]
+                            additional &&
+                            condition in additional &&
+                            additional[condition as keyof typeof additional]
                         )
                             vehicleTypes.push(...Object.values(vehicles));
                     });
@@ -201,10 +203,12 @@ export default (
                         vehicleGroups[vehicleGroupRequirement]
                             .conditionalVehicles ?? {}
                     ).forEach(([condition, vehicles]) => {
+                        const additional =
+                            LSSM.$stores.api.missions[missionType]?.additional;
                         if (
-                            LSSM.$stores.api.missions[missionType]?.additional[
-                                condition
-                            ]
+                            additional &&
+                            condition in additional &&
+                            additional[condition as keyof typeof additional]
                         )
                             vehicleTypes.push(...Object.values(vehicles));
                     });

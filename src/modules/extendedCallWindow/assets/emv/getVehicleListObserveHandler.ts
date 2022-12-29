@@ -51,9 +51,13 @@ export default (
                     const vehicleTypes = Object.values(vehicles);
                     Object.entries(conditionalVehicles ?? {}).forEach(
                         ([condition, vehicles]) => {
-                            if (
+                            const additional =
                                 LSSM.$stores.api.missions[missionType]
-                                    ?.additional[condition]
+                                    ?.additional;
+                            if (
+                                additional &&
+                                condition in additional &&
+                                additional[condition as keyof typeof additional]
                             )
                                 vehicleTypes.push(...Object.values(vehicles));
                         }

@@ -3,218 +3,361 @@
  */
 
 interface Additional {
+    filter_id: string;
     expansion_missions_ids?: number[];
-    expansion_missions_names?: Record<number, string>;
-    followup_missions_ids?: number[];
-    followup_missions_names?: Record<number, string>;
-    subsequent_missions_ids?: number[];
-    subsequent_missions_names?: Record<number, string>;
-    allow_drone_instead_of_investigation?: boolean;
-    allow_rw_instead_of_lf?: boolean;
-    only_alliance_mission?: boolean;
-    max_possible_prisoners?: number;
-    allow_arff_instead_of_lf?: boolean;
-    need_helicopter_bucket_only_if_present?: boolean;
-    need_elw_police_only_if_present?: boolean;
-    need_police_horse_only_if_present?: boolean;
-    max_civil_patrol_replacing_police_cars?: number;
-    pump_water_amount?: number;
-
-    // Guard missions
-    duration?: number;
-    duration_text?: string;
-    guard_mission?: boolean;
-
-    // Personnel
-    average_min_police_personnel?: number;
-    average_min_fire_personnel?: number;
-    swat_personnel?: number;
-    height_rescue_personnel?: number;
-    personnel_educations?: Record<string, number>;
-
-    // Patients
-    patient_specializations?: string;
-    all_patient_specializations?: string[];
-    patient_at_end_of_mission?: boolean;
-    possible_patient_min?: number;
     possible_patient?: number;
-    allow_ktw_instead_of_rtw?: boolean;
+    patient_specialization_ids?: number[];
+    patient_specialization_captions?: string[];
+    patient_specializations?: string;
+    allow_rw_instead_of_lf?: boolean;
+    allow_dlk_instead_of_lf?: boolean;
+    allow_crew_carrier_instead_of_lf?: boolean;
+    need_traffic_car_only_if_present?: boolean;
+    fire_alarm_system_possible?: boolean;
+    possible_patient_min?: number;
     patient_allow_first_responder_chance?: number;
-    patient_uk_code_possible?: string[]; // en_GB only
-    patient_us_code_possible?: string[]; // en_US only
-    patient_it_code_possible?: string[]; // it_IT only
-
-    // seasonal missions
-    date_start: string;
-    date_end: string;
-
-    // General:
-    [key: string]:
-        | number[]
-        | Record<number, string>
-        | Record<string, number>
-        | string[]
-        | boolean
-        | number
-        | string
-        | undefined;
+    max_possible_prisoners?: number;
+    only_alliance_mission?: boolean;
+    patient_at_end_of_mission?: boolean;
+    date_start?: string;
+    date_end?: string;
+    duration_text?: string;
+    duration?: number;
+    guard_mission?: boolean;
+    swat_personnel?: number;
+    min_possible_prisoners?: number;
+    average_min_fire_personnel?: number;
+    average_min_police_personnel?: number;
+    followup_missions_ids?: number[];
+    subsequent_missions_ids?: number[];
+    subsequent_mission_only?: boolean;
+    followup_mission_only?: boolean;
+    allow_arff_instead_of_lf?: boolean;
+    optional_event_mission?: boolean;
+    need_elw_police_only_if_present?: boolean;
+    allow_ktw_instead_of_rtw?: boolean;
+    allow_swat_instead_of_police?: boolean;
+    vehicle_groups?: string[];
+    uses_custom_spawn_area?: boolean;
+    handoff_possible_via_building_types?: number[];
+    personnel_educations?: AdditionalPersonnelEducation;
+    allow_police_motorcycle_instead_of_fustw: boolean;
+    max_civil_patrol_replacing_police_cars?: number;
+    max_police_motorcycle_replacing_police_cars?: number;
+    need_k9_only_if_guard_dogs_present?: boolean;
+    pump_water_amount?: number;
+    allow_gwoil_instead_of_lf?: boolean;
+    need_helicopter_bucket_only_if_present?: boolean;
+    allow_ktw_b_instead_of_rtw?: boolean;
+    pump_mission_mode?: string;
+    need_police_horse_only_if_present?: boolean;
+    patient_uk_code_possible?: string[];
+    patient_us_code_possible?: string[];
+    allow_drone_instead_of_investigation?: boolean;
+    smoke_jumper_personnel?: number;
+    allow_streifenwagen_instead_of_riot_police_van?: boolean;
+    height_rescue_personnel?: number;
+    patient_it_code_possible?: string[];
+    possible_patient_specializations?: string[];
+    max_municipal_police_replacing_police_cars?: number;
+    need_bomb_only_if_present?: boolean;
+    need_bike_police_only_if_present?: boolean;
+    allow_traffic_car_instead_of_fustw?: boolean;
 }
 
+type AdditionalPersonnelEducation = Partial<Record<string, number>>;
+
 interface Chances {
-    firetrucks?: number; // de_DE: (H/T)LF
-    platform_trucks?: number; // de_DE: DLK / TM 50
-    battalion_chief_vehicles?: number; // de_DE: ELW 1
-    heavy_rescue_vehicles?: number; // de_DE: RW / HLF
-    mobile_command_vehicles?: number; // de_DE: ELW 2
-    mobile_air_vehicles?: number; // de_DE: GW-Atem
-    water_tankers?: number; // de_DE: Schlauchwagen
-    gwoil?: number; // de_DE: GW-Öl
-    gwmess?: number; // de_DE: GW-Mes
-    hazmat_dekon?: number; // de_DE: Dekon-P
-    hazmat_vehicles?: number; // de_DE: GW-Gefahrgut
-    police_cars?: number; // de_DE: FuStW
-    fwk?: number;
-    height_rescue_units?: number; // de_DE: Höhenrettung
-    diver_units?: number; // de_DE: Taucher
-    rettungstreppe?: number;
-    kdow_orgl?: number;
-    elw3?: number;
-    ovdp?: number;
-    boats?: number; // de_DE: Boote
-    elw_airport?: number;
-    elw_police?: number;
-    civil_patrolcar?: number;
-
-    // Patients
-    nef?: number;
-    helicopter?: number; // de_DE: RTH
+    platform_trucks?: number;
     patient_transport?: number;
-    patient_other_treatment?: number; // de_DE: Tragehilfe
-    patient_critical_care?: number; // en_GB, nb_NO only
-
-    // General:
-    [key: string]: number | undefined;
+    patient_critical_care?: number;
+    battalion_chief_vehicles?: number;
+    water_tankers?: number;
+    hazmat_vehicles?: number;
+    helicopter?: number;
+    mobile_air_vehicles?: number;
+    kdow_orgl?: number;
+    fwk?: number;
+    heavy_rescue_vehicles?: number;
+    rettungstreppe?: number;
+    coastal_helicopter?: number;
+    nef?: number;
+    mobile_command_vehicles?: number;
+    gwoil?: number;
+    gwmess?: number;
+    hazmat_dekon?: number;
+    patient_other_treatment?: number;
+    k9?: number;
+    police_cars?: number;
+    firetrucks?: number;
+    height_rescue_units?: number;
+    diver_units?: number;
+    gw_werkfeuerwehr?: number;
+    civil_patrolcar?: number;
+    turboloescher?: number;
+    thw_brmg_r?: number;
+    thw_lkw?: number;
+    ulf?: number;
+    traffic_car?: number;
+    emergency_welfare?: number;
+    fbi?: number;
+    fbi_investigation?: number;
+    fbi_mcc?: number;
+    fbi_bomb?: number;
+    police_helicopters?: number;
+    elw3?: number;
+    bike_police?: number;
+    ovdp?: number;
+    boats?: number;
+    elw_airport?: number;
+    spokesman?: number;
+    police_horse?: number;
+    arff?: number;
+    hose?: number;
+    road_rescue?: number;
 }
 
 interface Prerequisites {
     main_building: number;
-    main_building_extensions?: Record<string, number>;
-
     fire_stations?: number;
-    commerce_police_stations?: number;
-    max_police_stations?: number;
     rescue_stations?: number;
     police_stations?: number;
+    max_police_stations?: number;
+    police_helicopter_stations?: number;
+    bomb_disposal_count?: number;
+    divers_extension_count?: number;
+    wasserrettung?: number;
+    riot_police?: number;
+    police_horse?: number;
+    airport?: number;
+    disaster_response_count?: number;
+    detention_unit_count?: number;
+    coastal_helicopter_count?: number;
+    coastal_rescue_count?: number;
+    personnel_educations?: PrerequisitePersonnelEducation;
+    fire_support_count?: number;
     max_rescue_stations?: number;
     thw?: number;
+    thw_zugtrupp_count?: number;
+    thw_fg_raeumen_count?: number;
+    thw_gkw_count?: number;
+    thw_bergung_count?: number;
     bereitschaftspolizei?: number;
-    police_helicopter_stations?: number;
-    wasserrettung?: number;
+    riot_unit_count?: number;
+    water_cannon?: number;
     mek?: number;
     sek?: number;
     werkfeuerwehr?: number;
     rescue_dog_units?: number;
-    federalpolice_stations?: number;
+    seg?: number;
+    guard_dog_count?: number;
+    criminal_investigation_count?: number;
+    water_damage_pump_count?: number;
+    police_service_group_leader?: number;
+    police_motorcycle?: number;
     brush_extension?: number;
     fire_aviation_count?: number;
-    divers_extension_count?: number;
-    guard_dog_count?: number;
+    mass_casualty_count?: number;
+    hazard_response_ems?: number;
+    fire_boat_docks?: number;
+    rescue_boat_docks?: number;
+    federalpolice_stations?: number;
+    fire_investigation_count?: number;
     game_warden_count?: number;
     water_police_count?: number;
     dea_count?: number;
     atf_count?: number;
-    criminal_investigation_count?: number;
-    thw_bergung_count?: number;
-    thw_zugtrupp_count?: number;
-    thw_fg_raeumen_count?: number;
-    thw_gkw_count?: number;
-    fire_investigation_count?: number;
-    police_service_group_leader?: number;
+    coastal_rescue_small_count?: number;
+    coastal_plane_count?: number;
+    brush_command?: number;
+    smoke_jumper?: number;
+    brush_air_command?: number;
+    traffic_police?: number;
+    main_building_extensions?: number[];
+    max_fire_stations?: number;
+    rescue_helicopter_stations?: number;
+    water_rescue_2?: number;
+    commerce_police_stations?: number;
+    bike_police?: number;
+    prisoner_transport_count?: number;
+    hondengeleider?: number;
+    at?: number;
+    search_and_rescue?: number;
+}
 
-    // General:
-    [key: string]: Record<string, number> | number | undefined;
+interface PrerequisitePersonnelEducation {
+    coastal_rescue?: number;
+    law_enforcement_marine?: number;
+    riot_police?: number;
+    search_and_rescue?: number;
+    riot_police_command?: number;
+    tactical_negotiator?: number;
+    fbi_bomb_tech?: number;
+    arson_investigator?: number;
+    heavy_traffic_control?: number;
+    traffic_police?: number;
+    property_investigation?: number;
+    narcotics_investigation?: number;
+    criminal_investigation?: number;
+    technical_investigation?: number;
+    ems_mobile_command?: number;
+    gw_gefahrgut?: number;
+    hotshot?: number;
+    coastal_command?: number;
+    level_1_public_order?: number;
+    level_2_public_order?: number;
+    police_sergeant?: number;
+    police_inspector?: number;
+    police_medic?: number;
 }
 
 interface Requirements {
-    firetrucks?: number; // de_DE: (H/T)LF
-    platform_trucks?: number; // de_DE: DLK / TM 50
-    water_needed?: number; // de_DE: Wasserbedarf
-    battalion_chief_vehicles?: number; // de_DE: ELW 1
-    heavy_rescue_vehicles?: number; // de_DE: RW / HLF
-    mobile_command_vehicles?: number; // de_DE: ELW 2
-    mobile_air_vehicles?: number; // de_DE: GW-Atem
-    water_tankers?: number; // de_DE: Schlauchwagen
-    gwoil?: number; // de_DE: GW-Öl
-    gwmess?: number; // de_DE: GW-Mes
-    hazmat_dekon?: number; // de_DE: Dekon-P
-    hazmat_vehicles?: number; // de_DE: GW-Gefahrgut
-    police_cars?: number; // de_DE: FuStW
-    height_rescue_units?: number; // de_DE: Höhenrettung
-    fwk?: number; // de_DE: FwK
-    thw_brmg_r?: number; // de_DE: Brmg R
-    thw_gkw?: number; // de_DE: GKW
-    thw_lkw?: number; // de_DE: LKW K 9
-    thw_mtwtz?: number; // de_DE: MTW-TZ
-    thw_mzkw?: number; // de_DE: MzKW
-    thw_dle?: number; // de_DE: Anh DLE
-    grukw?: number; // de_DE: GruKw
-    lebefkw?: number; // de_DE: leBefKw
-    gefkw?: number; // de_DE: GefKw
-    fukw?: number; // de_DE: FüKw
-    ambulances?: number; // de_DE: RTW oder KTW oder KTW-B
-    gw_san?: number; // de_DE: GW-San
-    police_helicopters?: number; // de_DE: Polizeihubschrauber
-    helicopter_bucket?: number; // de_DE: Aussenbehälter
-    boats?: number; // de_DE: Boote
-    diver_units?: number; // de_DE: Taucher
-    wasserwerfer?: number; // de_DE: WaWe
-    arff?: number; // de_DE: FLF
-    rettungstreppe?: number; // de_DE: Rettungstreppe
-    mek?: number; // de_DE: MEK-Fahrzeuge
-    sek?: number; // de_DE: SEK-Fahrzeuge
-    gw_werkfeuerwehr?: number; // de_DE: GW-Werkfeuerwehr
-    teleskopmast?: number; // de_DE: Teleskopmasten
-    turboloescher?: number; // de_DE: Turbolöscher
-    ulf?: number; // de_DE: ULF mit Löscharm
-    rescue_dog_units?: number; // de_DE: Rettungshundefahrzeuge oder Anh. Hund
+    firetrucks?: number;
+    platform_trucks?: number;
+    battalion_chief_vehicles?: number;
+    traffic_car?: number;
+    heavy_rescue_vehicles?: number;
+    water_tankers?: number;
+    hazmat_vehicles?: number;
+    police_cars?: number;
     kdow_orgl?: number;
+    ambulances?: number;
+    police_helicopters?: number;
     k9?: number;
-    elw3?: number;
-    spokesman?: number;
-    ovdp?: number;
-    elw_airport?: number;
-    hondengeleider?: number;
-    at_c?: number;
-    at_m?: number;
-    at_o?: number;
-    water_rescue?: number;
-    commerce_police?: number;
-    elw_police?: number;
+    mobile_air_vehicles?: number;
+    mobile_command_vehicles?: number;
+    fbi_bomb?: number;
+    diver_units?: number;
+    boats?: number;
+    crew_carrier?: number;
+    fwk?: number;
+    wasserwerfer?: number;
     police_horse?: number;
-    fbi?: number;
+    detention_unit?: number;
+    riot_police?: number;
+    riot_police_command?: number;
+    riot_police_equipment?: number;
+    riot_police_maintenance?: number;
+    arff?: number;
+    rettungstreppe?: number;
+    road_rescue?: number;
+    water_needed?: number;
+    hose?: number;
+    elw_police?: number;
+    clearing_unit?: number;
+    coastal_boat?: number;
+    coastal_helicopter?: number;
+    water_rescue?: number;
+    large_coastal_boat?: number;
+    personnel_educations?: RequirementPersonnelEducations;
+    foam_needed?: number;
+    foam?: number;
+    pump?: number;
+    gwoil?: number;
+    gwmess?: number;
+    hazmat_dekon?: number;
+    height_rescue_units?: number;
+    water_damage_pump?: number;
+    helicopter_bucket?: number;
+    thw_gkw?: number;
+    thw_mtwtz?: number;
+    thw_brmg_r?: number;
+    thw_lkw?: number;
+    thw_mzkw?: number;
+    thw_dle?: number;
+    lebefkw?: number;
+    grukw?: number;
+    gefkw?: number;
+    fukw?: number;
+    gw_san?: number;
+    mek?: number;
+    sek?: number;
+    teleskopmast?: number;
+    gw_werkfeuerwehr?: number;
+    ulf?: number;
+    turboloescher?: number;
+    rescue_dog_units?: number;
+    seg_elw?: number;
+    civil_patrolcar?: number;
+    min_pump_speed?: number;
+    police_service_group_leader?: number;
+    police_motorcycle?: number;
+    riot_police_suv?: number;
     brush_truck?: number;
+    fire_aviation?: number;
+    coastal_rescue?: number;
+    hazard_response_secondary?: number;
+    hazard_response_primary?: number;
+    emergency_welfare?: number;
+    ems_mobile_command?: number;
+    atv_carrier?: number;
+    mass_casualty_equipment?: number;
+    large_rescue_boat?: number;
+    large_fire_boat?: number;
     sheriff?: number;
+    fbi?: number;
+    fbi_investigation?: number;
     fbi_mcc?: number;
     fbi_drone?: number;
-    fbi_bomb?: number;
-    fbi_investigation?: number;
-    fire_aviation?: number;
+    fire_investigation?: number;
+    game_warden?: number;
     police_boat?: number;
-    atf_unit?: number;
-    atf_lab_vehicle?: number;
     dea_unit?: number;
     dea_clan_lab?: number;
-    game_warden?: number;
-    hazard_response_primary?: number;
-    hazard_response_secondary?: number;
-    emergency_welfare?: number;
-    atv_carrier?: number;
-    civil_patrolcar?: number;
-    fire_investigation?: number;
-    police_service_group_leader?: number;
+    atf_unit?: number;
+    atf_lab_vehicle?: number;
+    swat_armored_vehicle?: number;
+    coastal_plane?: number;
+    coastal_command?: number;
+    elw3?: number;
+    brush_air_command?: number;
+    swat_suv?: number;
+    heavy_traffic_control?: number;
+    rth?: number;
+    riot_police_trailer?: number;
+    coastal_guard_boat?: number;
+    commerce_police?: number;
+    bike_police?: number;
+    spokesman?: number;
+    hondengeleider?: number;
+    ovdp?: number;
+    elw_airport?: number;
+    at_c?: number;
+    at_o?: number;
+    at_m?: number;
+    riot_police_ambulance?: number;
+    search_and_rescue?: number;
+    coastal_jetski?: number;
+    coastal_boat_trailer?: number;
+    coastal_boat_hover?: number;
+}
 
-    // General:
-    [key: string]: number | undefined;
+interface RequirementPersonnelEducations {
+    coastal_rescue?: number;
+    law_enforcement_marine?: number;
+    riot_police?: number;
+    search_and_rescue?: number;
+    riot_police_command?: number;
+    gw_taucher?: number;
+    gw_wasserrettung?: number;
+    tactical_negotiator?: number;
+    fbi_bomb_tech?: number;
+    arson_investigator?: number;
+    heavy_traffic_control?: number;
+    traffic_police?: number;
+    property_investigation?: number;
+    narcotics_investigation?: number;
+    criminal_investigation?: number;
+    technical_investigation?: number;
+    ems_mobile_command?: number;
+    gw_gefahrgut?: number;
+    hotshot?: number;
+    coastal_command?: number;
+    level_1_public_order?: number;
+    level_2_public_order?: number;
+    police_sergeant?: number;
+    police_inspector?: number;
+    police_medic?: number;
 }
 
 export interface Mission {
@@ -224,12 +367,12 @@ export interface Mission {
     place_array: string[];
     average_credits?: number;
     generated_by: string;
-    icons: string[3];
+    icons: [string, string, string];
     requirements: Requirements; // What is needed at scene (vehicles)
     chances: Chances; // What is the chance for a need at scene?
     additional: Additional; // Any further information on this mission-type
     prerequisites: Prerequisites; // What is needed for the mission to be generated?
-    overlay_index: number | null;
+    overlay_index?: number;
     base_mission_id: number;
     additive_overlays: string;
     mission_categories: string[];
