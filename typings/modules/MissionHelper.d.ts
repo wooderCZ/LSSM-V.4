@@ -21,6 +21,18 @@ export interface MissionHelper {
         minified: boolean;
     };
 
+    drag: {
+        active: boolean;
+        position: {
+            top: number;
+            right: number;
+        };
+        offset: {
+            x: number;
+            y: number;
+        };
+    };
+
     // isReloading: boolean;
     // isDiyMission: boolean;
     // missionSpecs: Mission | undefined;
@@ -28,8 +40,6 @@ export interface MissionHelper {
     // maxMissionToggleCache: Mission | undefined;
     // maxState: boolean;
     // missionId: number;
-    // overlay: boolean | undefined;
-    // minified: boolean | undefined;
     // apiStore: ReturnType<typeof useAPIStore>;
     // settings: {
     //     title: boolean;
@@ -76,15 +86,6 @@ export interface MissionHelper {
     //     hoverTip: boolean;
     // };
     // noVehicleRequirements: string[];
-    // drag: {
-    //     active: boolean;
-    //     top: number;
-    //     right: number;
-    //     offset: {
-    //         x: number;
-    //         y: number;
-    //     };
-    // };
 }
 
 export interface MissionHelperComputed {
@@ -97,7 +98,6 @@ export interface MissionHelperComputed {
 }
 
 export interface MissionHelperMethods {
-    bar(): void;
     // reloadSpecs(force?: boolean): void;
     // getMission(id: string): Promise<Mission | undefined>;
     // loadSetting(
@@ -105,7 +105,7 @@ export interface MissionHelperMethods {
     //     base: Record<string, unknown>,
     //     base_string?: string
     // ): void;
-    // toggleOverlay(): void;
+    toggleOverlay(): void;
     // toggleMinified(): void;
     // dragStart(e: MouseEvent): void;
     // dragEnd(): void;

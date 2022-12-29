@@ -2,15 +2,30 @@
     <div
         class="alert alert-warning"
         :class="{ overlay: mode.overlay, minified: mode.minified }"
-        :style="`top: ${drag.top}px; right: ${drag.right}px`"
+        :style="`top: ${drag.position.top}px; right: ${drag.position.right}px`"
         :id="id"
-    ></div>
+    >
+        <div class="pull-right">
+            <!--
+            <font-awesome-icon
+                :icon="maxState ? faSubscript : faSuperscript"
+                fixed-width
+                @click="toggleMaximum"
+            ></font-awesome-icon>
+            -->
+            <font-awesome-icon
+                class="pull-right"
+                :icon="mode.overlay ? faAngleDoubleDown : faAngleDoubleUp"
+                fixed-width
+                @click="toggleOverlay"
+            ></font-awesome-icon>
+        </div>
+    </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
 
-import cloneDeep from 'lodash/cloneDeep';
 import { faAngleDoubleDown } from '@fortawesome/free-solid-svg-icons/faAngleDoubleDown';
 import { faAngleDoubleUp } from '@fortawesome/free-solid-svg-icons/faAngleDoubleUp';
 import { faArrowsAlt } from '@fortawesome/free-solid-svg-icons/faArrowsAlt';
@@ -19,10 +34,8 @@ import { faExpandAlt } from '@fortawesome/free-solid-svg-icons/faExpandAlt';
 import { faSubscript } from '@fortawesome/free-solid-svg-icons/faSubscript';
 import { faSuperscript } from '@fortawesome/free-solid-svg-icons/faSuperscript';
 import { faSyncAlt } from '@fortawesome/free-solid-svg-icons/faSyncAlt';
-import { useAPIStore } from '@stores/api';
 import { useRootStore } from '@stores/index';
 
-import type { Mission } from 'typings/Mission';
 import type {
     MissionHelper,
     MissionHelperComputed,
@@ -54,6 +67,18 @@ export default Vue.extend<
                 overlay: false,
                 minified: false,
             },
+
+            drag: {
+                active: false,
+                position: {
+                    top: 60,
+                    right: window.innerWidth * 0.03,
+                },
+                offset: {
+                    x: 0,
+                    y: 0,
+                },
+            },
         };
     },
     computed: {
@@ -62,8 +87,8 @@ export default Vue.extend<
         },
     },
     methods: {
-        bar() {
-            // bla
+        toggleOverlay() {
+            this.mode.overlay = !this.mode.overlay;
         },
     },
     props: {
