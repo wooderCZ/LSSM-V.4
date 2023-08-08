@@ -16,6 +16,10 @@ export default {
         color: '#bb0000',
         coins: 30,
         credits: 100_000,
+        levelPrices: {
+            credits: [10_000, 50_000, ...Array(17).fill(100_000)],
+            coins: [10, 15, ...Array(17).fill(20)],
+        },
         extensions: [
             {
                 caption: 'Rettungsdienst-Erweiterung',
@@ -127,6 +131,35 @@ export default {
                 givesParkingLots: 0,
                 unlocksVehicleTypes: [83, 84, 85, 86],
             },
+            {
+                caption: 'NEA50-Erweiterung',
+                credits: 100_000,
+                coins: 20,
+                duration: '5 Tage',
+                isVehicleExtension: true,
+                givesParkingLots: 0,
+                unlocksVehicleTypes: [111],
+            },
+            {
+                caption: 'NEA200-Erweiterung',
+                credits: 200_000,
+                coins: 25,
+                duration: '7 Tage',
+                requiredExtensions: [9],
+                isVehicleExtension: true,
+                givesParkingLots: 1,
+                parkingLotReservations: [[113]],
+                unlocksVehicleTypes: [113],
+            },
+            {
+                caption: 'Lüfter-Erweiterung',
+                credits: 75_000,
+                coins: 15,
+                duration: '5 Tage',
+                isVehicleExtension: true,
+                givesParkingLots: 0,
+                unlocksVehicleTypes: [114, 115, 116],
+            },
         ],
         storageUpgrades: {
             initial_containers: {
@@ -177,9 +210,9 @@ export default {
                 requiredStorageUpgrades: ['additional_containers_4'],
             },
         },
-        levelcost: ['1. 10.000', '2. 50.000', '3.-16. 100.000'],
+        levelcost: ['1. 10.000', '2. 50.000', '3.-19. 100.000'],
         maxBuildings: '6.000 mit kleinen Feuerwachen zusammen',
-        maxLevel: 16,
+        maxLevel: 19,
         special:
             'Ab der 24. Feuerwache steigen die Kosten für den Neubau einer Wache nach folgender Formel: <code>100.000+200.000*LOG<sub>2</sub>(Anzahl der vorhandenen Feuerwachen − 22)</code>. Der Coins-Preis bleibt konstant!',
         startPersonnel: 10,
@@ -206,6 +239,10 @@ export default {
         color: '#992222',
         coins: 50,
         credits: 500_000,
+        levelPrices: {
+            credits: [],
+            coins: [],
+        },
         extensions: multiplyExtension(
             index => ({
                 caption: 'Weiterer Klassenraum',
@@ -231,7 +268,31 @@ export default {
         color: '#ffa500',
         coins: 35,
         credits: 200_000,
-        extensions: [],
+        levelPrices: {
+            credits: [10_000, 50_000, ...Array(12).fill(100_000)],
+            coins: [10, 15, ...Array(12).fill(20)],
+        },
+        extensions: [
+            {
+                caption: 'Großwache',
+                credits: 1_000_000,
+                coins: 50,
+                duration: '7 Tage',
+                maxExtensionsFunction: (
+                    buildingsByType: Record<number, Building[]>
+                ): number =>
+                    Math.floor(
+                        ((buildingsByType[2]?.length ?? 0) +
+                            (buildingsByType[20]?.length ?? 0)) /
+                            10
+                    ),
+                canBuyByAmount: (boughtExtensionsAmountByType, maxExtensions) =>
+                    (boughtExtensionsAmountByType[0][9] ?? 0) < maxExtensions,
+                isVehicleExtension: true,
+                givesParkingLots: 10,
+                cannotDisable: true,
+            },
+        ],
         levelcost: ['1. 10.000', '2. 50.000', '3.-14. 100.000'],
         maxBuildings: 'Keine Grenze',
         maxLevel: 14,
@@ -247,6 +308,10 @@ export default {
         color: '#ddc722',
         coins: 50,
         credits: 500_000,
+        levelPrices: {
+            credits: [],
+            coins: [],
+        },
         extensions: multiplyExtension(
             index => ({
                 caption: 'Weiterer Klassenraum',
@@ -272,6 +337,10 @@ export default {
         color: '#bbe944',
         coins: 25,
         credits: 200_000,
+        levelPrices: {
+            credits: [...Array(20).fill(19_000)],
+            coins: [...Array(20).fill(11)],
+        },
         extensions: [
             {
                 caption: 'Allgemeine Innere',
@@ -343,6 +412,19 @@ export default {
                 requiredExtensions: [1],
                 cannotDisable: true,
             },
+            {
+                caption: 'Großkrankenhaus',
+                credits: 200_000,
+                coins: 50,
+                duration: '7 Tage',
+                maxExtensionsFunction: (
+                    buildingsByType: Record<number, Building[]>
+                ): number => Math.floor((buildingsByType[0]?.length ?? 4) / 5),
+                canBuyByAmount: (boughtExtensionsAmountByType, maxExtensions) =>
+                    (boughtExtensionsAmountByType[0][9] ?? 0) < maxExtensions,
+                newBeds: 10,
+                cannotDisable: true,
+            },
         ],
         levelcost: ['1.-20. 19.000 Credits / 11 Coins'],
         maxBuildings: 'Keine Grenze',
@@ -358,6 +440,10 @@ export default {
         coins: 50,
         credits: 1_000_000,
         extensions: [],
+        levelPrices: {
+            credits: [...Array(6).fill(1_000_000)],
+            coins: [...Array(6).fill(50)],
+        },
         levelcost: ['1.-7. 1.000.000 Credits / 50 Coins'],
         maxBuildings: 'siehe Besonderheiten',
         maxLevel: 6,
@@ -378,6 +464,10 @@ export default {
         color: '#007700',
         coins: 35,
         credits: 100_000,
+        levelPrices: {
+            credits: [10_000, 50_000, ...Array(12).fill(100_000)],
+            coins: [10, 15, ...Array(12).fill(20)],
+        },
         extensions: [
             {
                 caption: 'Zelle',
@@ -437,6 +527,47 @@ export default {
                 unlocksVehicleTypes: [95],
                 parkingLotReservations: [[95], [95]],
             },
+            {
+                caption: 'Großwache',
+                credits: 1_000_000,
+                coins: 50,
+                duration: '7 Tage',
+                maxExtensionsFunction: (
+                    buildingsByType: Record<number, Building[]>
+                ): number =>
+                    Math.floor(
+                        ((buildingsByType[6]?.length ?? 0) +
+                            (buildingsByType[19]?.length ?? 0)) /
+                            10
+                    ),
+                canBuyByAmount: (boughtExtensionsAmountByType, maxExtensions) =>
+                    (boughtExtensionsAmountByType[0][9] ?? 0) < maxExtensions,
+                isVehicleExtension: true,
+                givesParkingLots: 10,
+                cannotDisable: true,
+            },
+            {
+                caption: 'Großgewahrsam',
+                credits: 200_000,
+                coins: 50,
+                duration: '7 Tage',
+                maxExtensionsFunction: (
+                    buildingsByType: Record<number, Building[]>
+                ): number =>
+                    Math.floor(
+                        ((buildingsByType[6]?.length ?? 0) +
+                            (buildingsByType[19]?.length ?? 0)) /
+                            10
+                    ),
+                canBuyByAmount: (boughtExtensionsAmountByType, maxExtensions) =>
+                    (boughtExtensionsAmountByType[0][9] ?? 0) < maxExtensions,
+                isVehicleExtension: true,
+                givesParkingLots: 1,
+                newCells: 10,
+                cannotDisable: true,
+                unlocksVehicleTypes: [52],
+                parkingLotReservations: [[52]],
+            },
         ],
         levelcost: ['1. 10.000', '2. 50.000', '3.-14. 100.000'],
         maxBuildings: '1.700 mit kleinen Polizeiwachen zusammen',
@@ -456,6 +587,10 @@ export default {
         color: '#24c3ae',
         coins: 0,
         credits: 0,
+        levelPrices: {
+            credits: [],
+            coins: [],
+        },
         extensions: [],
         levelcost: [],
         maxBuildings: 'Alle 25 Gebäude eine Leitstelle',
@@ -471,6 +606,10 @@ export default {
         color: '#225522',
         coins: 50,
         credits: 500_000,
+        levelPrices: {
+            credits: [],
+            coins: [],
+        },
         extensions: multiplyExtension(
             index => ({
                 caption: 'Weiterer Klassenraum',
@@ -496,16 +635,21 @@ export default {
         color: '#000f76',
         coins: 35,
         credits: 200_000,
+        levelPrices: {
+            credits: [],
+            coins: [],
+        },
         extensions: [
             {
-                caption: '1. Technischer Zug: Bergungsgruppe 2',
+                caption:
+                    '1. Technischer Zug: Fachgruppe Notversorgung/Notinstandsetzung',
                 credits: 25_000,
                 coins: 5,
                 duration: '7 Tage',
                 isVehicleExtension: true,
-                givesParkingLots: 1,
-                unlocksVehicleTypes: [41],
-                parkingLotReservations: [[41]],
+                givesParkingLots: 2,
+                unlocksVehicleTypes: [41, 110],
+                parkingLotReservations: [[41], [110]],
             },
             {
                 caption: '1. Technischer Zug: Zugtrupp',
@@ -551,14 +695,15 @@ export default {
                 requiredExtensions: [0, 1],
             },
             {
-                caption: '2. Technischer Zug: Bergungsgruppe 2',
+                caption:
+                    '2. Technischer Zug: Fachgruppe Notversorgung/Notinstandsetzung',
                 credits: 25_000,
                 coins: 5,
                 duration: '7 Tage',
                 isVehicleExtension: true,
-                givesParkingLots: 1,
-                unlocksVehicleTypes: [41],
-                parkingLotReservations: [[41]],
+                givesParkingLots: 2,
+                unlocksVehicleTypes: [41, 110],
+                parkingLotReservations: [[41], [110]],
                 requiredExtensions: [4],
             },
             {
@@ -595,6 +740,28 @@ export default {
                 parkingLotReservations: [[99], [100], [101], [102]],
                 requiredExtensions: [0, 1],
             },
+            {
+                caption: 'Fachgruppe Schwere Bergung',
+                credits: 200_000,
+                coins: 25,
+                duration: '7 Tage',
+                isVehicleExtension: true,
+                givesParkingLots: 1,
+                unlocksVehicleTypes: [109],
+                parkingLotReservations: [[109]],
+                requiredExtensions: [0, 1],
+            },
+            {
+                caption: 'Fachgruppe Elektroversorgung',
+                credits: 200_000,
+                coins: 25,
+                duration: '7 Tage',
+                isVehicleExtension: true,
+                givesParkingLots: 2,
+                unlocksVehicleTypes: [99, 112],
+                parkingLotReservations: [[99], [112]],
+                requiredExtensions: [0, 1],
+            },
         ],
         levelcost: [],
         maxBuildings: 'Keine Grenze bekannt',
@@ -613,6 +780,10 @@ export default {
         color: '#222d54',
         coins: 50,
         credits: 500_000,
+        levelPrices: {
+            credits: [],
+            coins: [],
+        },
         extensions: multiplyExtension(
             index => ({
                 caption: 'Weiterer Klassenraum',
@@ -638,6 +809,10 @@ export default {
         color: '#227722',
         coins: 50,
         credits: 500_000,
+        levelPrices: {
+            credits: [],
+            coins: [],
+        },
         extensions: [
             {
                 caption: '2. Zug der 1. Hundertschaft',
@@ -751,6 +926,10 @@ export default {
         color: '#e05b00',
         coins: 30,
         credits: 100_000,
+        levelPrices: {
+            credits: [],
+            coins: [],
+        },
         extensions: [
             {
                 caption: 'Führung',
@@ -813,6 +992,10 @@ export default {
         color: '#148423',
         coins: 50,
         credits: 1_000_000,
+        levelPrices: {
+            credits: [...Array(6).fill(1_000_000)],
+            coins: [...Array(6).fill(50)],
+        },
         extensions: [
             {
                 caption: 'Außenlastbehälter-Erweiterung',
@@ -846,6 +1029,10 @@ export default {
         color: '#c259b5',
         coins: 0,
         credits: 0,
+        levelPrices: {
+            credits: [],
+            coins: [],
+        },
         extensions: [],
         levelcost: [],
         maxBuildings: 1,
@@ -861,6 +1048,10 @@ export default {
         color: '#7fffd4',
         coins: 50,
         credits: 500_000,
+        levelPrices: {
+            credits: [10_000, 50_000, ...Array(3).fill(100_000)],
+            coins: [10, 15, ...Array(3).fill(20)],
+        },
         extensions: [],
         levelcost: ['1. 10.000', '2. 50.000', '3.-5. 100.000'],
         maxBuildings: 'Keine Grenze',
@@ -878,6 +1069,10 @@ export default {
         color: '#00ff00',
         coins: -1,
         credits: 100_000,
+        levelPrices: {
+            credits: [],
+            coins: [],
+        },
         extensions: [
             {
                 caption: 'Zelle',
@@ -899,6 +1094,19 @@ export default {
                 },
                 9
             ),
+            {
+                caption: 'Großgewahrsam',
+                credits: 200_000,
+                coins: 50,
+                duration: '7 Tage',
+                maxExtensionsFunction: (
+                    buildingsByType: Record<number, Building[]>
+                ): number => Math.floor((buildingsByType[16]?.length ?? 0) / 5),
+                canBuyByAmount: (boughtExtensionsAmountByType, maxExtensions) =>
+                    (boughtExtensionsAmountByType[0][9] ?? 0) < maxExtensions,
+                newCells: 10,
+                cannotDisable: true,
+            },
         ],
         levelcost: [],
         maxBuildings: 'Keine Grenze',
@@ -913,6 +1121,10 @@ export default {
         color: '#1a7e23',
         coins: 40,
         credits: 400_000,
+        levelPrices: {
+            credits: [],
+            coins: [],
+        },
         extensions: [
             {
                 caption: 'SEK: 1. Zug',
@@ -982,6 +1194,10 @@ export default {
         color: '#aa1111',
         coins: 25,
         credits: 50_000,
+        levelPrices: {
+            credits: [10_000, 50_000, ...Array(3).fill(100_000)],
+            coins: [10, 15, ...Array(3).fill(20)],
+        },
         extensions: [
             {
                 caption: 'Rettungsdienst-Erweiterung',
@@ -1047,6 +1263,24 @@ export default {
                 givesParkingLots: 0,
                 unlocksVehicleTypes: [83, 84, 85, 86],
             },
+            {
+                caption: 'NEA50-Erweiterung',
+                credits: 100_000,
+                coins: 20,
+                duration: '5 Tage',
+                isVehicleExtension: true,
+                givesParkingLots: 0,
+                unlocksVehicleTypes: [111],
+            },
+            {
+                caption: 'Lüfter-Erweiterung',
+                credits: 75_000,
+                coins: 15,
+                duration: '5 Tage',
+                isVehicleExtension: true,
+                givesParkingLots: 0,
+                unlocksVehicleTypes: [114, 115, 116],
+            },
         ],
         storageUpgrades: {
             initial_containers: {
@@ -1107,6 +1341,10 @@ export default {
         color: '#116611',
         coins: 25,
         credits: 50_000,
+        levelPrices: {
+            credits: [10_000, 50_000, ...Array(3).fill(100_000)],
+            coins: [10, 15, ...Array(3).fill(20)],
+        },
         extensions: [
             {
                 caption: 'Zelle',
@@ -1168,11 +1406,11 @@ export default {
         levelcost: [
             '1. 10.000',
             '2. 50.000',
-            '3.-4. 100.000',
+            '3.-5. 100.000',
             'Umbau zur normalen Wache: Differenz-Preis zur normalen Wache',
         ],
         maxBuildings: '1.700 mit Polizeiwachen zusammen',
-        maxLevel: 4,
+        maxLevel: 5,
         special:
             'Ab der 24. Polizeiwache berechnen sich die Kosten für den Neubau einer Wache nach folgender Formel: <code>(50.000+100.000*LOG<sub>2</sub>(Anzahl der vorhandenen Polizeiwachen − 22)) / 2</code>. Der Coins-Preis bleibt konstant!',
         startPersonnel: 2,
@@ -1188,6 +1426,10 @@ export default {
         color: '#eeb611',
         coins: 25,
         credits: 100_000,
+        levelPrices: {
+            credits: [10_000, 50_000, ...Array(3).fill(100_000)],
+            coins: [10, 15, ...Array(3).fill(20)],
+        },
         extensions: [],
         levelcost: [
             '1. 10.000',
@@ -1209,6 +1451,10 @@ export default {
         color: '#663300',
         coins: 50,
         credits: 450_000,
+        levelPrices: {
+            credits: [10_000, 50_000, ...Array(3).fill(100_000)],
+            coins: [10, 15, ...Array(3).fill(20)],
+        },
         extensions: [],
         levelcost: ['1. 10.000', '2. 50.000', '3.-5. 100.000'],
         maxBuildings: 'Keine Grenze',
@@ -1225,6 +1471,10 @@ export default {
         color: '#8B4513',
         coins: -1,
         credits: -1,
+        levelPrices: {
+            credits: [],
+            coins: [],
+        },
         levelcost: ['Zu Teuer'],
         extensions: [],
         maxBuildings: 'Keine Grenze',
@@ -1241,6 +1491,10 @@ export default {
         color: '#8B4513',
         coins: -1,
         credits: -1,
+        levelPrices: {
+            credits: [],
+            coins: [],
+        },
         levelcost: ['Zu Teuer'],
         extensions: [],
         maxBuildings: 'Keine Grenze',

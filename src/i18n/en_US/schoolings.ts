@@ -110,6 +110,12 @@ export default {
             staffList: 'Smoke Jumper Training',
             key: 'smoke_jumper',
         },
+        {
+            caption: 'Traffic Control Training',
+            duration: '3 Days',
+            staffList: 'Traffic Control Training',
+            key: 'traffic_control',
+        },
     ],
     'Police': [
         {
@@ -171,6 +177,30 @@ export default {
             duration: '5 Days',
             staffList: 'Ocean Navigation',
             key: 'ocean_navigation',
+        },
+        {
+            caption: 'Riot Police Training',
+            duration: '3 Days',
+            staffList: 'Riot Police Officer',
+            key: 'riot_police',
+        },
+        {
+            caption: 'Police Operations Management',
+            duration: '5 Days',
+            staffList: 'Police Operations Manager',
+            key: 'elw_police',
+        },
+        {
+            caption: 'Tactical Rescue Training',
+            duration: '5 Days',
+            staffList: 'Tactical Rescue Officer',
+            key: 'tactical_medic',
+        },
+        {
+            caption: 'Sharpshooter Training',
+            duration: '5 Days',
+            staffList: 'Sharpshooter',
+            key: 'sniper',
         },
     ],
     'Rescue': [

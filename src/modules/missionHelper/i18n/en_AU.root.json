@@ -12,6 +12,16 @@
             "in": "additional",
             "text": "Average min . Police Personnel"
         },
+        "min_pump_speed": {
+            "badge": true,
+            "in": "requirements",
+            "text": "Min. Pump Capacity: {n}"
+        },
+        "pump_water_amount": {
+            "badge": true,
+            "in": "additional",
+            "text": "Water to pump (in Litres): {n}"
+        },
         "swat_personnel": {
             "badge": false,
             "in": "additional",
@@ -55,6 +65,10 @@
             "description": "Hides Support Vehicle completely and shows only MCV.",
             "title": "Hide Support Vehicle"
         },
+        "hide_on_Krankentransport": {
+            "description": "Hide on patient transfer missions",
+            "title": "Hide on patient transfer missions"
+        },
         "hoverTip": {
             "description": "Tooltips for as example the overlay button.",
             "title": "Tooltips"
@@ -83,8 +97,8 @@
         },
         "optionalAlternatives": {
             "allow_arff_instead_of_lf": {
-                "description": " Indicates, if instead of a firetruck arrfs are possible on site.",
-                "title": "Show if arrfs are allowed as firetrucks"
+                "description": " Indicates, if instead of a firetruck ULFV are possible on site.",
+                "title": "Show if ULFV are allowed as firetrucks"
             },
             "allow_rw_instead_of_lf": {
                 "description": "Indicates, if instead of a Fire Engine also Major Rescue Vehicle or Rescue Pumper is possible on site.",

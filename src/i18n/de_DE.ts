@@ -92,13 +92,16 @@ export default {
                     17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 87,
                 ],
                 Schlauchwagen: [11, 13, 14, 15, 16],
-                Sonderfahrzeuge: [2, 3, 4, 5, 10, 12, 27, 33, 34, 36, 53, 57],
+                Sonderfahrzeuge: [
+                    2, 3, 4, 5, 10, 12, 27, 33, 34, 36, 53, 57, 114, 115,
+                ],
                 ['WLF & Abrollbehälter']: [
-                    46, 47, 48, 49, 54, 62, 71, 77, 78, 108,
+                    46, 47, 48, 49, 54, 62, 71, 77, 78, 108, 116,
                 ],
                 Flughafenfeuerwehr: [75, 76],
                 Werkfeuerwehr: [83, 84, 85, 86],
                 Logistikfahrzeuge: [104, 105, 106, 107],
+                Netzersatzanlagen: [111, 113],
             },
             color: '#ff2d2d',
         },
@@ -126,11 +129,13 @@ export default {
         THW: {
             vehicles: {
                 'GKW': [39],
-                'Bergungsgruppe': [41],
+                'Notversorgung': [41, 110],
                 'Zugtrupp': [40],
                 ['Fachgruppe Räumen']: [42, 43, 44, 45],
                 'Fachgruppe Ortung': [92, 93],
                 'Fachgruppe Wasserschade/Pumpen': [99, 100, 101, 102],
+                'Schwere Bergung': [109],
+                'Netzersatzanlagen': [112],
             },
             color: '#0000ff',
         },

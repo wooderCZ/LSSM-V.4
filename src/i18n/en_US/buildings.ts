@@ -16,6 +16,10 @@ export default {
         color: '#bb0000',
         coins: 30,
         credits: 100_000,
+        levelPrices: {
+            credits: [10_000, 50_000, ...Array(37).fill(100_000)],
+            coins: [10, 15, ...Array(37).fill(20)],
+        },
         extensions: [
             {
                 caption: 'Ambulance Extension',
@@ -90,7 +94,30 @@ export default {
                 duration: '7 Days',
                 isVehicleExtension: true,
                 givesParkingLots: 1,
-                unlocksVehicleTypes: [21, 22],
+                unlocksVehicleTypes: [21, 22, 95],
+            },
+            {
+                caption: 'Flood Control Extension',
+                credits: 200_000,
+                coins: 25,
+                duration: '5 Days',
+                isVehicleExtension: true,
+                givesParkingLots: 2,
+                unlocksVehicleTypes: [91],
+                parkingLotReservations: [[91], [91]],
+            },
+            {
+                caption: 'Disaster Response Extension',
+                credits: 200_000,
+                coins: 25,
+                duration: '5 Days',
+                isVehicleExtension: true,
+                givesParkingLots: 2,
+                unlocksVehicleTypes: [93, 94],
+                parkingLotReservations: [
+                    [93, 94],
+                    [93, 94],
+                ],
             },
         ],
         levelcost: ['1. 10.000', '2. 50.000', '3.-39. 100.000'],
@@ -111,6 +138,10 @@ export default {
         coins: 0,
         credits: 0,
         extensions: [],
+        levelPrices: {
+            credits: [],
+            coins: [],
+        },
         levelcost: [],
         maxBuildings: 'All 25 buildings one control center',
         maxLevel: 0,
@@ -125,6 +156,10 @@ export default {
         color: '#bbe944',
         coins: 25,
         credits: 200_000,
+        levelPrices: {
+            credits: [],
+            coins: [],
+        },
         extensions: [
             {
                 caption: 'General Internal',
@@ -210,6 +245,10 @@ export default {
         color: '#ffa500',
         coins: 35,
         credits: 200_000,
+        levelPrices: {
+            credits: [10_000, 50_000, ...Array(37).fill(100_000)],
+            coins: [10, 15, ...Array(37).fill(20)],
+        },
         extensions: [
             {
                 caption: 'Mass Casualty Trailer Extension',
@@ -240,6 +279,10 @@ export default {
         color: '#992222',
         coins: 50,
         credits: 500_000,
+        levelPrices: {
+            credits: [],
+            coins: [],
+        },
         extensions: multiplyExtension(
             {
                 caption: 'Additional classroom',
@@ -264,6 +307,10 @@ export default {
         color: '#007700',
         coins: 35,
         credits: 100_000,
+        levelPrices: {
+            credits: [10_000, 50_000, ...Array(37).fill(100_000)],
+            coins: [10, 15, ...Array(37).fill(20)],
+        },
         extensions: [
             {
                 caption: 'Prison cell',
@@ -313,6 +360,57 @@ export default {
                 requiredExtensions: [10],
                 parkingLotReservations: [[55], [55]],
             },
+            {
+                caption: 'K9 Carrier Extension',
+                credits: 200_000,
+                coins: 25,
+                duration: '5 Days',
+                isVehicleExtension: true,
+                givesParkingLots: 2,
+                unlocksVehicleTypes: [81, 82],
+                parkingLotReservations: [[81], [82]],
+            },
+            {
+                caption: 'Riot Police Extension',
+                credits: 250_000,
+                coins: 25,
+                duration: '5 Days',
+                isVehicleExtension: true,
+                givesParkingLots: 3,
+                unlocksVehicleTypes: [83, 84, 85],
+                parkingLotReservations: [[83], [84], [85]],
+            },
+            {
+                caption: 'Detention Unit Extension',
+                credits: 200_000,
+                coins: 25,
+                duration: '5 Days',
+                isVehicleExtension: true,
+                givesParkingLots: 2,
+                unlocksVehicleTypes: [87],
+                parkingLotReservations: [[87], [87]],
+            },
+            {
+                caption: 'Federal Police Extension',
+                credits: 200_000,
+                coins: 15,
+                duration: '5 Days',
+                isVehicleExtension: true,
+                givesParkingLots: 2,
+                unlocksVehicleTypes: [43, 46],
+                parkingLotReservations: [[43], [46]],
+            },
+            {
+                caption: 'Bomb Squad Extension',
+                credits: 150_000,
+                coins: 25,
+                duration: '5 Days',
+                isVehicleExtension: true,
+                givesParkingLots: 1,
+                requiredExtensions: [16],
+                unlocksVehicleTypes: [45],
+                parkingLotReservations: [[45]],
+            },
         ],
         levelcost: ['1. 10.000', '2. 50.000', '3.-39. 100.000'],
         maxBuildings: '1.700 together with small police stations',
@@ -332,6 +430,10 @@ export default {
         color: '#e7ad2f',
         coins: 50,
         credits: 1_000_000,
+        levelPrices: {
+            credits: [],
+            coins: [],
+        },
         extensions: [],
         levelcost: [],
         maxBuildings: 'see specials',
@@ -353,6 +455,10 @@ export default {
         color: '#225522',
         coins: 50,
         credits: 500_000,
+        levelPrices: {
+            credits: [],
+            coins: [],
+        },
         extensions: multiplyExtension(
             {
                 caption: 'Additional classroom',
@@ -377,6 +483,10 @@ export default {
         color: '#148423',
         coins: 50,
         credits: 1_000_000,
+        levelPrices: {
+            credits: [1_000_000],
+            coins: [50],
+        },
         extensions: [],
         levelcost: ['1. 1.000.000 Credits / 50 Coins'],
         maxBuildings: 'see specials',
@@ -398,6 +508,10 @@ export default {
         color: '#c259b5',
         coins: 0,
         credits: 0,
+        levelPrices: {
+            credits: [],
+            coins: [],
+        },
         extensions: [],
         levelcost: [],
         maxBuildings: 4,
@@ -413,6 +527,10 @@ export default {
         color: '#00ff00',
         coins: -1,
         credits: 100_000,
+        levelPrices: {
+            credits: [],
+            coins: [],
+        },
         extensions: [
             {
                 caption: 'Prison cell',
@@ -431,7 +549,7 @@ export default {
                     newCells: 1,
                     cannotDisable: true,
                 },
-                9
+                29
             ),
         ],
         levelcost: [],
@@ -447,6 +565,10 @@ export default {
         color: '#ab0404',
         coins: 35,
         credits: 500_000,
+        levelPrices: {
+            credits: [10_000, 50_000, ...Array(14).fill(100_000)],
+            coins: [10, 15, ...Array(14).fill(20)],
+        },
         extensions: [],
         levelcost: ['1. 10.000', '2. 50.000', '3.-16. 100.000'],
         maxBuildings: 'No limit',
@@ -463,6 +585,10 @@ export default {
         color: '#d3d62a',
         coins: 35,
         credits: 500_000,
+        levelPrices: {
+            credits: [10_000, 50_000, ...Array(14).fill(100_000)],
+            coins: [10, 15, ...Array(14).fill(20)],
+        },
         extensions: [],
         levelcost: ['1. 10.000', '2. 50.000', '3.-16. 100.000'],
         maxBuildings: 'No limit',
@@ -479,6 +605,10 @@ export default {
         color: '#aa1111',
         coins: 25,
         credits: 50_000,
+        levelPrices: {
+            credits: [10_000, 50_000, ...Array(3).fill(100_000)],
+            coins: [10, 15, ...Array(3).fill(20)],
+        },
         extensions: [
             {
                 caption: 'Ambulance Extension',
@@ -528,13 +658,45 @@ export default {
                 unlocksVehicleTypes: [64, 65],
             },
             {
+                caption: 'Lifeguard Extension',
+                credits: 100_000,
+                coins: 15,
+                duration: '5 Days',
+                isVehicleExtension: true,
+                givesParkingLots: 0,
+                unlocksVehicleTypes: [66, 67, 68, 73],
+            },
+            {
                 caption: 'Water Rescue Expansion',
                 credits: 100_000,
                 coins: 20,
                 duration: '7 Days',
                 isVehicleExtension: true,
                 givesParkingLots: 1,
-                unlocksVehicleTypes: [21, 22],
+                unlocksVehicleTypes: [21, 22, 95],
+            },
+            {
+                caption: 'Flood Control Extension',
+                credits: 200_000,
+                coins: 25,
+                duration: '5 Days',
+                isVehicleExtension: true,
+                givesParkingLots: 2,
+                unlocksVehicleTypes: [91],
+                parkingLotReservations: [[91], [91]],
+            },
+            {
+                caption: 'Disaster Response Extension',
+                credits: 200_000,
+                coins: 25,
+                duration: '5 Days',
+                isVehicleExtension: true,
+                givesParkingLots: 2,
+                unlocksVehicleTypes: [93, 94],
+                parkingLotReservations: [
+                    [93, 94],
+                    [93, 94],
+                ],
             },
         ],
         levelcost: [
@@ -559,6 +721,10 @@ export default {
         color: '#e2e53b',
         coins: 25,
         credits: 100_000,
+        levelPrices: {
+            credits: [10_000, 50_000, ...Array(3).fill(100_000)],
+            coins: [10, 15, ...Array(3).fill(20)],
+        },
         extensions: [
             {
                 caption: 'General Internal',
@@ -585,7 +751,27 @@ export default {
         color: '#116611',
         coins: 25,
         credits: 50_000,
+        levelPrices: {
+            credits: [10_000, 50_000, ...Array(2).fill(100_000)],
+            coins: [10, 15, ...Array(2).fill(20)],
+        },
         extensions: [
+            {
+                caption: 'Prison cell',
+                credits: 25_000,
+                coins: 5,
+                duration: '7 Days',
+                newCells: 1,
+                cannotDisable: true,
+            },
+            {
+                caption: 'Additional cell',
+                credits: 25_000,
+                coins: 5,
+                duration: '7 Days',
+                newCells: 1,
+                cannotDisable: true,
+            },
             {
                 caption: 'Game Warden Office',
                 credits: 20_000,
@@ -615,6 +801,46 @@ export default {
                 requiredExtensions: [10],
                 parkingLotReservations: [[55], [55]],
             },
+            {
+                caption: 'K9 Carrier Extension',
+                credits: 200_000,
+                coins: 25,
+                duration: '5 Days',
+                isVehicleExtension: true,
+                givesParkingLots: 2,
+                unlocksVehicleTypes: [81, 82],
+                parkingLotReservations: [[81], [82]],
+            },
+            {
+                caption: 'Riot Police Extension',
+                credits: 250_000,
+                coins: 25,
+                duration: '5 Days',
+                isVehicleExtension: true,
+                givesParkingLots: 3,
+                unlocksVehicleTypes: [83, 84, 85],
+                parkingLotReservations: [[83], [84], [85]],
+            },
+            {
+                caption: 'Detention Unit Extension',
+                credits: 200_000,
+                coins: 25,
+                duration: '5 Days',
+                isVehicleExtension: true,
+                givesParkingLots: 2,
+                unlocksVehicleTypes: [87],
+                parkingLotReservations: [[87], [87]],
+            },
+            {
+                caption: 'Federal Police Extension',
+                credits: 200_000,
+                coins: 15,
+                duration: '5 Days',
+                isVehicleExtension: true,
+                givesParkingLots: 2,
+                unlocksVehicleTypes: [43, 46],
+                parkingLotReservations: [[43], [46]],
+            },
         ],
         levelcost: [
             '1. 10.000',
@@ -639,6 +865,10 @@ export default {
         color: '#eeb611',
         coins: 25,
         credits: 100_000,
+        levelPrices: {
+            credits: [10_000, 50_000, ...Array(3).fill(100_000)],
+            coins: [10, 15, ...Array(3).fill(20)],
+        },
         extensions: [
             {
                 caption: 'Mass Casualty Trailer Extension',
@@ -674,6 +904,10 @@ export default {
         color: '#ce312b',
         coins: 65,
         credits: 1_500_000,
+        levelPrices: {
+            credits: [1_500_000],
+            coins: [65],
+        },
         extensions: [
             {
                 caption: 'Wildland Air Command Extension',
@@ -745,6 +979,10 @@ export default {
         color: '#264289',
         coins: 50,
         credits: 500_000,
+        levelPrices: {
+            credits: [10_000, 50_000, ...Array(18).fill(100_000)],
+            coins: [10, 15, ...Array(18).fill(20)],
+        },
         extensions: [
             {
                 caption: 'DEA Expansion',
@@ -780,6 +1018,10 @@ export default {
         color: '#caa318',
         coins: 50,
         credits: 500_000,
+        levelPrices: {
+            credits: [],
+            coins: [],
+        },
         extensions: multiplyExtension(
             {
                 caption: 'Additional classroom',
@@ -804,6 +1046,10 @@ export default {
         color: '#4d2304',
         coins: -1,
         credits: -1,
+        levelPrices: {
+            credits: [],
+            coins: [],
+        },
         extensions: [],
         levelcost: ['Too Expensive'],
         maxBuildings: 'No Limit',
@@ -820,6 +1066,10 @@ export default {
         color: '#6e3408',
         coins: -1,
         credits: -1,
+        levelPrices: {
+            credits: [],
+            coins: [],
+        },
         extensions: [],
         levelcost: ['Too Expensive'],
         maxBuildings: 'No Limit',
@@ -836,6 +1086,10 @@ export default {
         color: '#d02020',
         coins: 30,
         credits: 250_000,
+        levelPrices: {
+            credits: [...Array(10).fill(150_000)],
+            coins: [...Array(10).fill(20)],
+        },
         extensions: [],
         levelcost: ['1.- 10. 150.000'],
         maxBuildings: 'No limit',
@@ -852,6 +1106,10 @@ export default {
         color: '#11858d',
         coins: 50,
         credits: 500_000,
+        levelPrices: {
+            credits: [],
+            coins: [],
+        },
         extensions: [],
         levelcost: [],
         maxBuildings: '',
@@ -868,6 +1126,10 @@ export default {
         color: '#11858d',
         coins: 50,
         credits: 500_000,
+        levelPrices: {
+            credits: [],
+            coins: [],
+        },
         extensions: multiplyExtension(
             {
                 caption: 'Additional classroom',
@@ -892,6 +1154,10 @@ export default {
         color: '#11858d',
         coins: 50,
         credits: 1_000_000,
+        levelPrices: {
+            credits: [],
+            coins: [],
+        },
         extensions: [
             {
                 caption: 'Helicopter Hangar',
@@ -967,6 +1233,10 @@ export default {
         color: '#11858d',
         coins: 35,
         credits: 50_000,
+        levelPrices: {
+            credits: [],
+            coins: [],
+        },
         extensions: [],
         levelcost: [],
         maxBuildings: '',

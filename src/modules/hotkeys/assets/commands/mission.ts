@@ -7,7 +7,15 @@ import type { Empty, Scope } from 'typings/modules/Hotkeys';
 export default <
     Scope<
         Empty,
-        ['sorted', 'alliance', 'arr', 'vehicleList', 'backalarm'],
+        [
+            'sorted',
+            'alliance',
+            'arr',
+            'vehicleList',
+            'backalarm',
+            'missionHelper',
+            'emv',
+        ],
         [
             'transport_request',
             'alert_next',
@@ -15,7 +23,7 @@ export default <
             'next',
             'alert_share_next',
             'share',
-            'alert'
+            'alert',
         ],
         true
     >
@@ -162,7 +170,7 @@ export default <
                 loadMissingBtn: HTMLAnchorElement | null;
             },
             [],
-            ['next', 'previous', 'loadMissing']
+            ['next', 'previous', 'loadMissing', 'reset']
         >
     >{
         validatorFunction() {
@@ -195,6 +203,9 @@ export default <
             if (this.loadMissingBtn?.style.display != 'none')
                 this.loadMissingBtn?.click();
         },
+        reset() {
+            window.vehicleSelectionReset();
+        },
     },
     backalarm: <
         Scope<Empty, [], ['allVehicles', 'onlyAmbulance', 'abortApproach']>
@@ -216,6 +227,30 @@ export default <
             document
                 .querySelector<HTMLAnchorElement>("a[href$='backalarmDriving']")
                 ?.click();
+        },
+    },
+    missionHelper: <Scope<Empty, [], ['toggleCollapse']>>{
+        validatorFunction: () => true,
+        toggleCollapse() {
+            document
+                .querySelector<SVGElement>(
+                    `#${(window[PREFIX] as Vue).$stores.root.nodeAttribute(
+                        'missionHelper-collapse-btn'
+                    )}`
+                )
+                ?.dispatchEvent(new MouseEvent('click'));
+        },
+    },
+    emv: <Scope<Empty, [], ['toggleCollapse']>>{
+        validatorFunction: () => true,
+        toggleCollapse() {
+            document
+                .querySelector<SVGElement>(
+                    `#${(window[PREFIX] as Vue).$stores.root.nodeAttribute(
+                        'emv-collapse-btn'
+                    )}`
+                )
+                ?.dispatchEvent(new MouseEvent('click'));
         },
     },
     transport_request() {

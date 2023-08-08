@@ -88,6 +88,7 @@ export default {
         'Fire Vehicles': {
             vehicles: {
                 'Fire Trucks': [0, 1, 12, 13, 19, 30],
+                'Airport': [43, 44, 45],
                 'Bush-Fire Units': [28, 29, 31, 32, 33],
                 'Special Vehicles': [2, 3, 4, 6, 7, 10, 11],
             },
@@ -116,6 +117,9 @@ export default {
         'SES & Water Rescue': {
             vehicles: {
                 SES: [20, 21, 40, 41, 42],
+                FAR: [46, 47, 48],
+                DR: [49, 50, 51, 52],
+                SAR: [53, 54],
                 VMR: [38, 39],
             },
             color: '#02a18c',
@@ -228,6 +232,11 @@ export default {
         'Sawmill',
         'Mine',
         'Beach',
+        'Aged Care Home',
+        'Dam',
+        'Silo',
+        'Aquarium',
+        'Prison',
     ],
     only_alliance_missions: [57, 74],
     transfer_missions: [],

@@ -84,8 +84,12 @@ export default async (
                 arr => arr.classList.remove(highlightClass)
             );
         }
-        if (resetSelection) window.vehicleSelectionReset();
     };
+
+    LSSM.$stores.root.hook({
+        event: 'vehicleSelectionReset',
+        callback: resetCounters,
+    });
 
     if (counter || highlight) {
         const clickHandler = (arr: HTMLAnchorElement) => {
@@ -100,14 +104,14 @@ export default async (
                 counterNode = document.createElement('span');
                 counterNode.classList.add(counterClass);
                 counterNode.setAttribute('data-amount', '0');
-                arr.querySelector('.label')?.insertAdjacentElement(
-                    counterBadge ? 'beforebegin' : 'afterend',
-                    counterNode
-                );
+                arr
+                    .querySelector('.label')
+                    ?.insertAdjacentElement(
+                        counterBadge ? 'beforebegin' : 'afterend',
+                        counterNode
+                    );
                 counterNodes[arrId] = counterNode;
             }
-
-            if (arr.getAttribute('reset') === 'true') resetCounters();
 
             if (counter) {
                 counterNode.setAttribute(
@@ -153,7 +157,7 @@ export default async (
             .querySelector<HTMLElement>(
                 '#container_navbar_alarm .container-fluid'
             )
-            ?.appendChild(resetBtnHolder);
+            ?.append(resetBtnHolder);
     }
     document
         .querySelector<HTMLDivElement>('#navbar-right-help-button')
@@ -173,7 +177,9 @@ export default async (
         'navbar-btn',
         'hidden-xs'
     );
-    resetBtn.addEventListener('click', resetCounters);
+    if (resetSelection)
+        resetBtn.addEventListener('click', window.vehicleSelectionReset);
+    else resetBtn.addEventListener('click', resetCounters);
     resetBtn.textContent = $m('arrCounter.reset', {
         text: $m(`arrCounter.resetTexts.${resetBtnTexts.join('_')}`),
     }).toString();

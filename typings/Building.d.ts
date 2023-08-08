@@ -97,8 +97,13 @@ interface CellExtension extends BaseExtension {
     newCells: number;
 }
 
+interface BedExtension extends BaseExtension {
+    newBeds: number;
+}
+
 type InternalExtension =
     | BaseExtension
+    | BedExtension
     | CellExtension
     | ClassroomExtension
     | VehicleExtension;
@@ -119,6 +124,10 @@ interface BaseBuilding {
     coins: number;
     extensions: (InternalExtension | null)[]; // null if extension is not available
     storageUpgrades?: Record<string, StorageUpgrade>;
+    levelPrices: {
+        credits: number[];
+        coins: number[];
+    };
     levelcost: string[];
     maxBuildings: number | string;
     maxLevel: number;
@@ -149,7 +158,7 @@ interface StagingAreaBuilding extends BaseBuilding {
 }
 
 type CanHaveVehiclesBuilding<
-    BaseBuildingType extends BaseBuilding | InternalBuilding
+    BaseBuildingType extends BaseBuilding | InternalBuilding,
 > = BaseBuildingType & {
     schoolingTypes: string[];
     startPersonnel: number;

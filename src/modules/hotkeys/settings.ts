@@ -62,9 +62,12 @@ export default <ModuleSettingFunction>((MODULE_ID, LSSM, $m) => {
         'mission.vehicleList.next',
         'mission.vehicleList.previous',
         'mission.vehicleList.loadMissing',
+        'mission.vehicleList.reset',
         'mission.backalarm.allVehicles',
         'mission.backalarm.onlyAmbulance',
         'mission.backalarm.abortApproach',
+        'mission.missionHelper.toggleCollapse',
+        'mission.emv.toggleCollapse',
         'building.goto.previousBuilding',
         'building.goto.nextBuilding',
         'building.goto.dispatchCenter',
@@ -98,6 +101,7 @@ export default <ModuleSettingFunction>((MODULE_ID, LSSM, $m) => {
         'vehicles.alarm.firstAllianceMission',
         'vehicles.other.moveVehicle',
         'vehicles.other.toggleFMS',
+        'schoolings.educate',
     ].sort();
     const labels: string[] = commands.map(command =>
         getCommandName(command, $m)

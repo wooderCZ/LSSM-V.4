@@ -1,9 +1,8 @@
 /**
  * This feature allows to select users from a suggestion list of alliance members
- *  when either typing the name to whisper or to mention in the alliance chat.
+ * when either typing the name to whisper or to mention in the alliance chat.
  * It also indicates when the user is trying to mention / whisper to an alliance member
- *  that does not exist in the alliance.
- *
+ * that does not exist in the alliance.
  * @file - This is the only method in this file.
  * @param LSSM - The current local LSSM instance.
  */
@@ -15,7 +14,7 @@ export default (LSSM: Vue) => {
 
     // chatInput is the input field in the chat panel
     const chatInput = document.querySelector<HTMLInputElement>(
-        '#alliance_chat_message'
+        '#alliance_chat_message, #mission_reply_content' // chat input, mission reply input
     );
     if (!chatInput) return;
 
@@ -143,11 +142,22 @@ export default (LSSM: Vue) => {
             chatInput.dispatchEvent(new Event('input'));
     });
 
+    // disable submitting the form when choicePopup is open
+    chatInput.closest('form')?.addEventListener('submit', e => {
+        if (!choicePopup.dataset.inputMode) return;
+        e.preventDefault();
+        e.stopPropagation();
+        e.stopImmediatePropagation();
+        return false;
+    });
+
     // function to clear the choices
     const clearChoices = () => {
         choicePopup.dataset.inputMode = '';
         delete choicePopup.dataset.pointer;
         chatInput.removeAttribute('autocomplete');
+        // this small timeout is required to prevent SAP from sending the message in mission window on enter
+        setTimeout(() => delete chatInput.dataset.userChoiceOpen, 100);
         choiceElements.forEach(el => (el.dataset.choice = ''));
     };
 
@@ -222,6 +232,7 @@ export default (LSSM: Vue) => {
 
         // whisper-mode: currently at entering username
         if (
+            chatInput.id !== 'mission_reply_content' && // whispering in mission replies is not possible
             chatInput.value.match(/^\/w [^ ]+/u) &&
             selectionStart >= 3 &&
             (selectionStart <= chatInput.value.indexOf(' ', 3) ||
@@ -237,6 +248,7 @@ export default (LSSM: Vue) => {
 
             choicePopup.dataset.inputMode = 'whisper';
             chatInput.autocomplete = 'off';
+            chatInput.dataset.userChoiceOpen = 'true';
 
             fillChoices(users, usernameInput);
         } else if (chatInput.value.match(/@[^ ]*/u)) {
@@ -263,6 +275,7 @@ export default (LSSM: Vue) => {
             choicePopup.dataset.inputMode = 'mention';
             choicePopup.dataset.pointer = pointer.toString();
             chatInput.autocomplete = 'off';
+            chatInput.dataset.userChoiceOpen = 'true';
 
             fillChoices(users, usernameInput);
         } else {

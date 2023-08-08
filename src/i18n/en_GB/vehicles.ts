@@ -10,6 +10,8 @@ export default {
         icon: 'car-side',
         possibleBuildings: [0, 18],
         special: 'A standard pump used for fighting fires.',
+        pumpCapacity: 2000,
+        pumpType: 'fire',
     },
     1: {
         caption: 'Light 4X4 Pump (L4P)',
@@ -20,6 +22,8 @@ export default {
         icon: 'car-side',
         possibleBuildings: [0, 18],
         special: 'A smaller pump used in rural areas, will act as a pump.',
+        pumpCapacity: 1500,
+        pumpType: 'fire',
     },
     2: {
         caption: 'Aerial Appliance',
@@ -53,6 +57,8 @@ export default {
         possibleBuildings: [0, 18],
         special:
             'Required once you have built 4 fire stations. A big lorry with specialist rescue equipment, useful for Road Traffic Collisions.',
+        pumpCapacity: 1500,
+        pumpType: 'fire',
     },
     5: {
         caption: 'Ambulance',
@@ -74,6 +80,8 @@ export default {
         possibleBuildings: [0, 18],
         special:
             'Required once you have built 7 fire stations. Used for conveying water to a fire, useful for rural fires.',
+        pumpCapacity: 2000,
+        pumpType: 'fire',
     },
     7: {
         caption: 'HazMat Unit',
@@ -393,6 +401,8 @@ export default {
         possibleBuildings: [0, 18],
         special:
             'Unlocked at Fire Apparatus Operator or Sergeant Rank. Works as a Water Carrier and Water Ladder. Used in rural areas to save money.',
+        pumpCapacity: 2000,
+        pumpType: 'fire',
     },
     27: {
         caption: 'PRV',
@@ -572,6 +582,8 @@ export default {
         possibleBuildings: [0, 18],
         special:
             'Acts as a Bulk Foam Unit and a Water Carrier. Used on hazardous fires and electrical fires. Requires Foam Extension.',
+        pumpCapacity: 2000,
+        pumpType: 'fire',
     },
     37: {
         caption: 'WrL CAFS',
@@ -636,6 +648,8 @@ export default {
         icon: 'car-side',
         possibleBuildings: [0, 18],
         special: 'Acts as a Water Carrier. Requires Swap Body Parking Space.',
+        pumpCapacity: 2000,
+        pumpType: 'fire',
     },
     42: {
         caption: 'Bulk Foam Pod',
@@ -772,6 +786,8 @@ export default {
         },
         icon: 'car-side',
         possibleBuildings: [0, 18],
+        pumpCapacity: 4000,
+        pumpType: 'fire',
         special:
             'Requires special education for personnel on Prime Mover (High Volume Pump Training). Acts as a Water Carrier. Requires Swap Body Parking Space.',
     },
@@ -888,7 +904,7 @@ export default {
         coins: 15,
         staff: { min: 1, max: 5 },
         icon: 'car-side',
-        possibleBuildings: [28],
+        possibleBuildings: [22, 28],
         special: 'Coastguard Response Vehicle. Responds to all calls on land.',
     },
     58: {
@@ -937,7 +953,7 @@ export default {
             },
         },
         icon: 'car-side',
-        possibleBuildings: [28],
+        possibleBuildings: [22, 28],
         special: 'Takes Command of all coastguard related incidents.',
     },
     61: {
@@ -958,6 +974,8 @@ export default {
         },
         icon: 'car-side',
         possibleBuildings: [27, 28],
+        pumpCapacity: 2500,
+        pumpType: 'fire',
         special:
             'Needed towing vehicle (CRV, Coastguard Commander, Coastguard Mud Rescue Unit, Coastguard Rope Rescue Unit, Support Unit, 4x4 Vehicle). Helps to deal with flooding.',
     },
@@ -1187,5 +1205,161 @@ export default {
         icon: 'car-side',
         possibleBuildings: [0, 18],
         special: 'Needed towing vehicle (Light 4x4) Fire Service Boat.',
+    },
+    75: {
+        caption: 'Major Foam Tender',
+        color: '#aa0000',
+        credits: 45_000,
+        coins: 25,
+        staff: {
+            min: 1,
+            max: 4,
+        },
+        icon: 'car-side',
+        possibleBuildings: [0, 18],
+    },
+    76: {
+        caption: 'RIV',
+        color: '#aa0000',
+        credits: 20_000,
+        coins: 20,
+        staff: {
+            min: 1,
+            max: 4,
+            training: {
+                'Fire Station': {
+                    arff: {
+                        all: true,
+                    },
+                },
+            },
+        },
+        icon: 'car-side',
+        possibleBuildings: [0, 18],
+    },
+    77: {
+        caption: 'Airfield Firefighting Command Vehicle',
+        color: '#aa0000',
+        credits: 30_000,
+        coins: 20,
+        staff: {
+            min: 2,
+            max: 2,
+            training: {
+                'Fire Station': {
+                    arff: {
+                        all: true,
+                    },
+                },
+            },
+        },
+        icon: 'car-side',
+        possibleBuildings: [0, 18],
+    },
+    78: {
+        caption: 'Rescue Stairs',
+        color: '#aa0000',
+        credits: 15_000,
+        coins: 15,
+        staff: {
+            min: 1,
+            max: 2,
+            training: {
+                'Fire Station': {
+                    arff: {
+                        all: true,
+                    },
+                },
+            },
+        },
+        icon: 'car-side',
+        possibleBuildings: [0, 18],
+    },
+    79: {
+        caption: 'Airfield Operations Vehicle',
+        color: '#8cec24',
+        credits: 10_000,
+        coins: 10,
+        staff: {
+            min: 1,
+            max: 2,
+        },
+        icon: 'car-side',
+        possibleBuildings: [0, 6, 18, 19],
+    },
+    80: {
+        caption: 'Airfield Operations Supervisor',
+        color: '#8cec24',
+        credits: 15_000,
+        coins: 15,
+        staff: {
+            min: 1,
+            max: 2,
+        },
+        icon: 'car-side',
+        possibleBuildings: [0, 6, 18, 19],
+    },
+    81: {
+        caption: 'Medical equipment trailer',
+        color: '#8cec24',
+        credits: 15_000,
+        coins: 15,
+        staff: {
+            min: 0,
+            max: 0,
+        },
+        icon: 'car-side',
+        possibleBuildings: [0, 6, 18, 19],
+        special:
+            'Needed towing vehicle (Airfield Operations Vehicle, Airfield Operations Supervisor)',
+    },
+    82: {
+        caption: 'Armed Cell Van',
+        color: '#3a5522',
+        credits: 30_000,
+        coins: 20,
+        staff: {
+            min: 1,
+            max: 2,
+            training: {
+                Police: {
+                    swat: {
+                        all: true,
+                    },
+                },
+            },
+        },
+        icon: 'car-side',
+        possibleBuildings: [6, 19],
+    },
+    83: {
+        caption: 'Medical cycle responder',
+        color: '#b89d14',
+        credits: 5000,
+        coins: 10,
+        staff: {
+            min: 1,
+            max: 1,
+        },
+        icon: 'car-side',
+        possibleBuildings: [2, 20],
+    },
+    84: {
+        caption: 'Pump Trailer',
+        color: '#aa0000',
+        credits: 20_000,
+        coins: 15,
+        staff: {
+            min: 0,
+            max: 0,
+        },
+        icon: 'car-side',
+        special:
+            'Needed towing vehicle (Water Ladder, Light 4X4 Pump (L4P), Rescue Support Unit (RSU))',
+        pumpCapacity: 4000,
+        pumpType: 'fire',
+        possibleBuildings: [0, 18],
+        isTrailer: true,
+        tractiveVehicles: [0, 1, 4],
     },
 } satisfies Record<number, InternalVehicle>;
